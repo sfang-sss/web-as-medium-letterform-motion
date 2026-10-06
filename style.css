@@ -1,15 +1,7 @@
-/* =========================
-   Background
-========================= */
-
 body {
     background: white;
 }
 
-
-/* =========================
-   Gradient Background
-========================= */
 
 body::before {
     content: "";
@@ -47,6 +39,7 @@ body::before {
 }
 
 
+
 /* When hovering over S */
 
 body:has(.s-06:hover)::before {
@@ -58,7 +51,7 @@ body:has(.s-06:hover)::before {
 }
 
 
-/* Moving gradient */
+/* gradient */
 
 @keyframes gradientMove {
 
@@ -77,9 +70,7 @@ body:has(.s-06:hover)::before {
 }
 
 
-/* =========================
-   White Ripple
-========================= */
+/*Ripple*/
 
 body::after {
     content: "";
@@ -144,9 +135,7 @@ body:has(.s-06:hover)::after {
 }
 
 
-/* =========================
-   S SHAPE
-========================= */
+/* S SHAPE*/
 
 .s-06 {
     position: relative;
@@ -170,9 +159,7 @@ body:has(.s-06:hover)::after {
 }
 
 
-/* =========================
-   TRIANGLES
-========================= */
+/* TRIANGLES*/
 
 .s-06 .triangle {
     position: absolute;
@@ -188,10 +175,9 @@ body:has(.s-06:hover)::after {
         5px 5px 5px rgba(0, 0, 0, 0.35)
     );
 
-    /*
-    All triangles start
-    at the same position
-    */
+
+
+    /*All triangles start at the same position*/
 
     top: 80px;
     left: 80px;
@@ -204,11 +190,6 @@ body:has(.s-06:hover)::after {
 }
 
 
-/* =========================
-   COLORS
-========================= */
-
-/* Triangle 1 — black */
 
 .s-06 .triangle-1 {
     border-bottom: 45px solid black;
@@ -222,7 +203,6 @@ body:has(.s-06:hover)::after {
 }
 
 
-/* Triangle 2 — dark gray */
 
 .s-06 .triangle-2 {
     border-bottom: 45px solid #404040;
@@ -236,7 +216,6 @@ body:has(.s-06:hover)::after {
 }
 
 
-/* Triangle 3 — gray */
 
 .s-06 .triangle-3 {
     border-bottom: 45px solid #727272;
@@ -250,7 +229,6 @@ body:has(.s-06:hover)::after {
 }
 
 
-/* Triangle 4 — light gray */
 
 .s-06 .triangle-4 {
     border-bottom: 45px solid #a6a6a6;
@@ -264,7 +242,6 @@ body:has(.s-06:hover)::after {
 }
 
 
-/* Triangle 5 — lightest gray */
 
 .s-06 .triangle-5 {
     border-bottom: 45px solid rgb(223, 223, 223);
@@ -278,18 +255,14 @@ body:has(.s-06:hover)::after {
 }
 
 
-/* =========================
-   HOVER — MAKE S BIGGER
-========================= */
+/* HOVER*/
 
 .s-06:hover .s-06-shape {
     transform: scale(1.15, 1.4);
 }
 
 
-/* =========================
-   HOVER — BUILD THE S
-========================= */
+/* HOVER — BUILD THE S */
 
 
 /* Triangle 1 */
