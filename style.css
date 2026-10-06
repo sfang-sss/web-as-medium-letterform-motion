@@ -1,32 +1,161 @@
-/* ==================================================
-   CENTER THE LETTERFORM
-================================================== */
+/* =========================
+   Background
+========================= */
+
+body {
+    background: white;
+}
+
+
+/* =========================
+   Gradient Background
+========================= */
+
+body::before {
+    content: "";
+    position: fixed;
+
+    width: 100vmax;
+    height: 100vmax;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%) scale(0);
+
+    border-radius: 50%;
+
+    background: linear-gradient(
+        135deg,
+        #ffd6df,
+        #c8b6ff,
+        #a0e7e5,
+        #ffd6df
+    );
+
+    background-size: 300% 300%;
+
+    opacity: 0;
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    transition:
+        transform 1.5s ease-out,
+        opacity 0.8s ease;
+}
+
+
+/* When hovering over S */
+
+body:has(.s-06:hover)::before {
+    transform: translate(-50%, -50%) scale(1);
+
+    opacity: 1;
+
+    animation: gradientMove 6s ease infinite;
+}
+
+
+/* Moving gradient */
+
+@keyframes gradientMove {
+
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+
+}
+
+
+/* =========================
+   White Ripple
+========================= */
+
+body::after {
+    content: "";
+
+    position: fixed;
+
+    width: 300px;
+    height: 300px;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%) scale(0);
+
+    border-radius: 50%;
+
+    border: 3px solid rgba(255, 255, 255, 0.5);
+
+    pointer-events: none;
+
+    z-index: -1;
+
+    opacity: 0;
+}
+
+
+/* Ripple starts when hovering over S */
+
+body:has(.s-06:hover)::after {
+    animation: ripple 1s ease-out infinite;
+}
+
+
+/* Ripple animation */
+
+@keyframes ripple {
+
+    0% {
+        transform: translate(-50%, -50%) scale(0.3);
+        opacity: 0.8;
+    }
+
+    100% {
+        transform: translate(-50%, -50%) scale(5);
+        opacity: 0;
+    }
+
+}
+
+
+
+
+
+
+
 
 .letterform-container {
     display: flex;
     justify-content: center;
     align-items: center;
-
     min-height: 100vh;
 }
 
 
-/* ==================================================
-   S 06
-   TRIANGLES
-================================================== */
+/* =========================
+   S SHAPE
+========================= */
 
 .s-06 {
     position: relative;
-
     width: 180px;
     height: 250px;
 }
 
 
-/* ==================================================
-   S SHAPE WRAPPER
-================================================== */
+/* wrapper for the whole S */
 
 .s-06-shape {
     position: relative;
@@ -36,13 +165,14 @@
 
     transform-origin: center center;
 
-    transition: transform 0.5s ease;
+    /* smooth enlargement */
+    transition: transform 0.8s ease;
 }
 
 
-/* ==================================================
-   SHARED TRIANGLE CLASS
-================================================== */
+/* =========================
+   TRIANGLES
+========================= */
 
 .s-06 .triangle {
     position: absolute;
@@ -53,151 +183,185 @@
     border-left: 25px solid transparent;
     border-right: 25px solid transparent;
 
-    filter: drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.3));
+    /* keep your drop shadow */
+    filter: drop-shadow(
+        5px 5px 5px rgba(0, 0, 0, 0.35)
+    );
 
-    animation: none;
+    /*
+    All triangles start
+    at the same position
+    */
+
+    top: 80px;
+    left: 80px;
+
+    /*
+    When mouse leaves:
+    wait 2 seconds,
+    then move back.
+    */
 }
 
 
-/* ==================================================
-   INDIVIDUAL TRIANGLES
-================================================== */
+/* =========================
+   COLORS
+========================= */
+
+/* Triangle 1 — black */
 
 .s-06 .triangle-1 {
-    top: -20px;
-    left: 90px;
+    border-bottom: 45px solid black;
 
     transform: rotate(-270deg);
 
-    border-bottom: 45px solid black;
+    transition:
+        top 1s ease-in 1s,
+        left 1s ease-in 1s,
+        border-bottom-color 1.2s ease 2s;
 }
 
+
+/* Triangle 2 — dark gray */
+
 .s-06 .triangle-2 {
-    top: 35px;
-    left: 20px;
+    border-bottom: 45px solid #404040;
 
     transform: rotate(-90deg);
 
-    border-bottom: 45px solid #404040;
+    transition:
+        top 1.5s ease-in 1s,
+        left 1.5s ease-in 1s,
+        border-bottom-color 1.2s ease 2s;
 }
 
+
+/* Triangle 3 — gray */
+
 .s-06 .triangle-3 {
-    top: 75px;
-    left: 80px;
+    border-bottom: 45px solid #727272;
 
     transform: rotate(-180deg);
 
-    border-bottom: 45px solid #727272;
+    transition:
+        top 1.5s ease-in 1s,
+        left 1.5s ease-in 1s,
+        border-bottom-color 1.2s ease 2s;
 }
 
+
+/* Triangle 4 — light gray */
+
 .s-06 .triangle-4 {
-    top: 115px;
-    left: 130px;
+    border-bottom: 45px solid #a6a6a6;
 
     transform: rotate(90deg);
 
-    border-bottom: 45px solid #a6a6a6;
+    transition:
+        top 1.5s ease-in 1s,
+        left 1.5s ease-in 1s,
+        border-bottom-color 1.2s ease 2s;
 }
 
+
+/* Triangle 5 — lightest gray */
+
 .s-06 .triangle-5 {
-    top: 155px;
-    left: 75px;
+    border-bottom: 45px solid rgb(223, 223, 223);
 
     transform: rotate(30deg);
 
-    border-bottom: 45px solid rgb(223, 223, 223);
+    transition:
+        top 1.5s ease-in 1s,
+        left 1.5s ease-in 1s,
+        border-bottom-color 1.2s ease 2s;
 }
 
 
-/* ==================================================
-   HOVER
-   STRETCH + ENLARGE THE WHOLE S
-================================================== */
+/* =========================
+   HOVER — MAKE S BIGGER
+========================= */
 
 .s-06:hover .s-06-shape {
     transform: scale(1.15, 1.4);
 }
 
 
-/* ==================================================
-   HOVER WAVE ANIMATION
-================================================== */
+/* =========================
+   HOVER — BUILD THE S
+========================= */
+
+
+/* Triangle 1 */
 
 .s-06:hover .triangle-1 {
-    animation: wave1 1.5s ease-in-out infinite;
+    top: -20px;
+    left: 90px;
+
+    border-bottom-color: #ff4d6d;
+
+    transition:
+        top 1.5s ease-out 0s,
+        left 1.5s ease-out 0s,
+        border-bottom-color 1.2s ease 0s;
 }
+
+
+/* Triangle 2 */
 
 .s-06:hover .triangle-2 {
-    animation: wave2 1.5s ease-in-out infinite;
+    top: 35px;
+    left: 20px;
+
+    border-bottom-color: #ff758f;
+
+    transition:
+        top 1.5s ease-out 0.3s,
+        left 1.5s ease-out 0.3s,
+        border-bottom-color 1.2s ease 0.3s;
 }
+
+
+/* Triangle 3 */
 
 .s-06:hover .triangle-3 {
-    animation: wave3 1.5s ease-in-out infinite;
+    top: 75px;
+    left: 80px;
+
+    border-bottom-color: #ff8fa3;
+
+    transition:
+        top 1.5s ease-out 0.6s,
+        left 1.5s ease-out 0.6s,
+        border-bottom-color 1.2s ease 0.6s;
 }
+
+
+/* Triangle 4 */
 
 .s-06:hover .triangle-4 {
-    animation: wave4 1.5s ease-in-out infinite;
+    top: 115px;
+    left: 130px;
+
+    border-bottom-color: #ffb3c1;
+
+    transition:
+        top 1.5s ease-out 0.9s,
+        left 1.5s ease-out 0.9s,
+        border-bottom-color 1.2s ease 0.9s;
 }
+
+
+/* Triangle 5 */
 
 .s-06:hover .triangle-5 {
-    animation: wave5 1.5s ease-in-out infinite;
-}
+    top: 155px;
+    left: 75px;
 
+    border-bottom-color: #ffd6df;
 
-/* ==================================================
-   WAVE KEYFRAMES
-================================================== */
-
-@keyframes wave1 {
-    0%, 100% {
-        transform: translateY(0) rotate(-270deg);
-    }
-
-    50% {
-        transform: translateY(-15px) rotate(-270deg);
-    }
-}
-
-
-@keyframes wave2 {
-    0%, 100% {
-        transform: translateY(0) rotate(-90deg);
-    }
-
-    50% {
-        transform: translateY(15px) rotate(-90deg);
-    }
-}
-
-
-@keyframes wave3 {
-    0%, 100% {
-        transform: translateY(0) rotate(-180deg);
-    }
-
-    50% {
-        transform: translateY(-15px) rotate(-180deg);
-    }
-}
-
-
-@keyframes wave4 {
-    0%, 100% {
-        transform: translateY(0) rotate(90deg);
-    }
-
-    50% {
-        transform: translateY(15px) rotate(90deg);
-    }
-}
-
-
-@keyframes wave5 {
-    0%, 100% {
-        transform: translateY(0) rotate(30deg);
-    }
-
-    50% {
-        transform: translateY(-15px) rotate(30deg);
-    }
+    transition:
+        top 1.5s ease-out 1.2s,
+        left 1.5s ease-out 1.2s,
+        border-bottom-color 1.2s ease 1.2s;
 }
